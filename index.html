@@ -1,12 +1,353 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <meta http-equiv="refresh" content="0;url=https://edvardcode.vercel.app/">
-    <script>
-        window.location.href = "https://edvardcode.vercel.app/";
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Адрес сайта изменился</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0f0f23;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+        
+        .container {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo {
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+            color: #6c63ff;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #6c63ff, #ff6b9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .message {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            color: #b0b0d0;
+            opacity: 0.9;
+        }
+        
+        .address-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .address-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px 30px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .old-address {
+            background: rgba(255, 100, 100, 0.1);
+            border: 1px solid rgba(255, 100, 100, 0.3);
+            animation: fadeOut 1s ease forwards;
+        }
+        
+        .new-address {
+            background: rgba(100, 255, 150, 0.1);
+            border: 1px solid rgba(100, 255, 150, 0.3);
+            animation: pulseGlow 2s infinite alternate;
+        }
+        
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+        
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 rgba(100, 255, 150, 0.3); }
+            100% { box-shadow: 0 0 20px rgba(100, 255, 150, 0.5); }
+        }
+        
+        .address-icon {
+            font-size: 1.5rem;
+        }
+        
+        .old-address .address-icon {
+            color: #ff6464;
+        }
+        
+        .new-address .address-icon {
+            color: #64ff96;
+        }
+        
+        .address-text {
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+        
+        .old-address .address-text {
+            text-decoration: line-through;
+            color: #ff9d9d;
+        }
+        
+        .new-address .address-text {
+            color: #64ff96;
+            font-weight: 600;
+        }
+        
+        .arrow {
+            font-size: 2rem;
+            color: #6c63ff;
+            margin: 5px 0;
+            animation: moveArrow 3s ease infinite;
+        }
+        
+        @keyframes moveArrow {
+            0%, 100% { transform: translateY(0); opacity: 0.7; }
+            50% { transform: translateY(10px); opacity: 1; }
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 40px;
+            background: linear-gradient(135deg, #6c63ff, #3a34cc);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(108, 99, 255, 0.4);
+            background: linear-gradient(135deg, #7a73ff, #4a44dd);
+        }
+        
+        .btn:active {
+            transform: translateY(-2px);
+        }
+        
+        .countdown {
+            margin-top: 30px;
+            font-size: 1rem;
+            color: #b0b0d0;
+            opacity: 0.8;
+        }
+        
+        .countdown span {
+            color: #6c63ff;
+            font-weight: 600;
+        }
+        
+        /* Фоновые элементы */
+        .bg-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .bg-element {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(108, 99, 255, 0.1) 0%, rgba(108, 99, 255, 0) 70%);
+            animation: floatBg 20s linear infinite;
+        }
+        
+        @keyframes floatBg {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .message { font-size: 1.1rem; }
+            .address-item { padding: 15px 20px; }
+            .address-text { font-size: 1.1rem; }
+            .btn { padding: 16px 30px; }
+            .logo { font-size: 2.8rem; }
+        }
+    </style>
 </head>
 <body>
-    Redirecting to <a href="https://edvardcode.vercel.app/">new site</a>...
+    <div class="bg-elements" id="bgElements"></div>
+    
+    <div class="container">
+        <div class="logo">
+            <i class="fas fa-map-marker-alt"></i>
+        </div>
+        
+        <h1>Адрес сайта изменился</h1>
+        
+        <p class="message">
+            Мы переехали на новый адрес. Пожалуйста, обновите закладки.
+        </p>
+        
+        <div class="address-container">
+            <div class="address-item old-address">
+                <div class="address-icon">
+                    <i class="fas fa-times"></i>
+                </div>
+                <div class="address-text">edvardcode.netlify.app</div>
+            </div>
+            
+            <div class="arrow">
+                <i class="fas fa-arrow-down"></i>
+            </div>
+            
+            <div class="address-item new-address">
+                <div class="address-icon">
+                    <i class="fas fa-check"></i>
+                </div>
+                <div class="address-text">https://edvardcode.vercel.app/</div>
+            </div>
+        </div>
+        
+        <a href="https://edvardcode.vercel.app/" class="btn" id="redirectBtn">
+            <i class="fas fa-external-link-alt"></i>
+            Перейти на новый сайт
+        </a>
+        
+        <div class="countdown">
+            Автопереход через: <span id="timer">10</span> сек.
+        </div>
+    </div>
+
+    <script>
+        // Создание фоновых элементов
+        const bgElements = document.getElementById('bgElements');
+        for (let i = 0; i < 12; i++) {
+            const element = document.createElement('div');
+            element.classList.add('bg-element');
+            
+            // Случайные параметры
+            const size = Math.random() * 200 + 50;
+            const left = Math.random() * 100;
+            const animationDuration = Math.random() * 30 + 20;
+            const animationDelay = Math.random() * 5;
+            const opacity = Math.random() * 0.3 + 0.1;
+            
+            element.style.width = `${size}px`;
+            element.style.height = `${size}px`;
+            element.style.left = `${left}%`;
+            element.style.animationDuration = `${animationDuration}s`;
+            element.style.animationDelay = `${animationDelay}s`;
+            element.style.opacity = opacity;
+            
+            bgElements.appendChild(element);
+        }
+        
+        // Таймер обратного отсчета
+        let timeLeft = 10;
+        const timerElement = document.getElementById('timer');
+        const countdownInterval = setInterval(() => {
+            timeLeft--;
+            timerElement.textContent = timeLeft;
+            
+            if (timeLeft <= 0) {
+                clearInterval(countdownInterval);
+                redirectToNewSite();
+            }
+        }, 1000);
+        
+        // Функция перенаправления
+        function redirectToNewSite() {
+            window.location.href = 'https://edvardcode.vercel.app/';
+        }
+        
+        // Ручное перенаправление
+        document.getElementById('redirectBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Анимация кнопки
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Переход...';
+            this.style.pointerEvents = 'none';
+            
+            setTimeout(() => {
+                redirectToNewSite();
+            }, 300);
+        });
+        
+        // Копирование нового адреса
+        const newAddressElement = document.querySelector('.new-address');
+        newAddressElement.style.cursor = 'pointer';
+        
+        newAddressElement.addEventListener('click', function() {
+            const newAddress = 'new-site.com';
+            
+            // Показываем уведомление
+            const originalHTML = this.innerHTML;
+            this.innerHTML = `
+                <div class="address-icon">
+                    <i class="fas fa-check-double"></i>
+                </div>
+                <div class="address-text">Адрес скопирован!</div>
+            `;
+            
+            // Копируем в буфер обмена
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(newAddress);
+            } else {
+                // Фолбэк для старых браузеров
+                const textArea = document.createElement('textarea');
+                textArea.value = newAddress;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+            }
+            
+            // Возвращаем исходный вид через 2 секунды
+            setTimeout(() => {
+                this.innerHTML = originalHTML;
+            }, 2000);
+        });
+    </script>
 </body>
 </html>
